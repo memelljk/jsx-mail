@@ -31,15 +31,13 @@ export class DeleteDomainService {
 		const verificationAttributes = getResponse.VerificationAttributes;
 
 
-		if (!verificationAttributes[domain.name]?.VerificationStatus) {
-			throw new HttpException('Domain not exists in SES', HttpStatus.BAD_REQUEST);
+		if (verificationAttributes[domain.name]?.VerificationStatus) {
+			const deleteCommand = new DeleteIdentityCommand({
+				Identity: domain.name,
+			});
+
+			await client.send(deleteCommand);
 		}
-
-		const deleteCommand = new DeleteIdentityCommand({
-			Identity: domain.name,
-		});
-
-		await client.send(deleteCommand);
 
 		await this.prisma.domain.update({
 			where: {
