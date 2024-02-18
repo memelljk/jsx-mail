@@ -1,9 +1,12 @@
 import { Hono } from 'hono'
+import { cors } from 'hono/cors'
 import HttpException from './utils/error'
 import HttpStatus from './utils/status'
 import userGroup from './groups/user'
 
 const app = new Hono<{ Bindings: Env }>()
+
+app.use(cors())
 
 app.route('/users', userGroup)
 

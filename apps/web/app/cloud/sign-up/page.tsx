@@ -45,7 +45,7 @@ export default function Page() {
           throw new Error('Passwords do not match');
         }
 
-        await axios.post('/user', {
+        await axios.post('/users', {
           name,
           email,
           password,
