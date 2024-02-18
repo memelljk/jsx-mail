@@ -6,4 +6,9 @@ export const createUserSchema = z.object({
 	password: z.string().min(6, { message: 'Password must be at least 6 characters long' }),
 })
 
+export const createSecurityCodeSchema = z.object({
+	email: z.string().email({ message: 'Invalid email address' }),
+})
+
 export type CreateUserSchema = z.infer<typeof createUserSchema>
+export type CreateSecurityCodeSchema = z.infer<typeof createSecurityCodeSchema>
