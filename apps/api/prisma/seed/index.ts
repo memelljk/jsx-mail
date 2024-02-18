@@ -1,6 +1,5 @@
 import getPrisma from '../../src/utils/prisma';
 import dataJson from './data';
-
 const data: any = dataJson
 
 //@ts-ignore

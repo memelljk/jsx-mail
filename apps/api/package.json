@@ -1,7 +1,7 @@
 {
   "name": "api",
   "scripts": {
-    "prepare:db": "prisma migrate deploy && prisma generate --accelerate",
+    "prepare:db": "prisma migrate deploy && prisma generate --accelerate && prisma db seed",
     "dev": "pnpm run prepare:db && wrangler dev src/index.ts",
     "deploy": "pnpm run prepare:db && wrangler deploy --minify src/index.ts"
   },
@@ -16,6 +16,10 @@
     "@cloudflare/workers-types": "^4.20240208.0",
     "@types/bcryptjs": "^2.4.6",
     "prisma": "^5.9.1",
+    "ts-node": "^10.9.2",
     "wrangler": "^3.25.0"
+  },
+  "prisma": {
+    "seed": "ts-node -P tsconfig.seed.json ./prisma/seed/index.ts"
   }
 }
