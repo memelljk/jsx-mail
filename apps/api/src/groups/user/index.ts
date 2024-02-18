@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import { createSecurityCodeSchema, createUserSchema } from './schemas'
 import { validator } from '../../utils/validator'
 import createUser from './services/create-user'
-import createSecurityCode from './services/use-security-code'
+import createSecurityCode from './services/create-security-code'
 
 const userGroup = new Hono<{ Bindings: Env }>()
 
