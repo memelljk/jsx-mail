@@ -12,18 +12,6 @@ export default async function createUser({ email, name, password }: CreateUserSc
 	email = email.toLocaleLowerCase().trim();
 	name = name.toLocaleLowerCase().trim();
 
-	const userExists = await prisma.user.findFirst({
-		where: {
-			email: email,
-			deletedAt: null
-		},
-		cacheStrategy: { swr: CacheTime.ONE_MINUTE },
-	});
-
-	if (userExists) {
-		throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
-	}
-
 	const salt = await bcrypt.genSalt(10);
 	const hashPassword = await bcrypt.hash(password, salt);
 
