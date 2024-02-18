@@ -1,3 +1,1 @@
-# JSX Mail Cloud API
-
-Coming soon
+# JSX Mail API
