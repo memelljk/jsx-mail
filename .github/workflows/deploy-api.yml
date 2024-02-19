@@ -16,12 +16,5 @@ jobs:
     name: Deploy
     steps:
       - uses: actions/checkout@v4
-      - name: install pnpm
-        uses: pnpm/action-setup@v3
-      - name: Deploy API
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
           cd apps/api
-          pnpm install
-          pnpm run deploy

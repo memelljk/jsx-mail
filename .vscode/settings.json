@@ -10,5 +10,6 @@
     "jsxmail",
     "MIMETYPES"
   ],
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "deno.enable": true
 }
