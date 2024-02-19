@@ -18,7 +18,6 @@ import handleRedirectUrl from '@/app/utils/handle-redirect-url';
 import BackButton from '../BackButton';
 
 export default function Page() {
-  const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [redirect, setRedirect] = useState('' as string);
   const router = useRouter();
@@ -33,7 +32,6 @@ export default function Page() {
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      setIsLoading(true);
       try {
         const formData = new FormData(e.currentTarget);
         const name = formData.get('name') as string;
@@ -57,8 +55,6 @@ export default function Page() {
         );
       } catch (error: any) {
         toast.error(error.message);
-      } finally {
-        setIsLoading(false);
       }
     },
     [router, redirect],
@@ -123,12 +119,7 @@ export default function Page() {
               className="w-full"
               name="password2"
             />
-            <Button
-              isLoading={isLoading}
-              color="primary"
-              fullWidth
-              type="submit"
-            >
+            <Button color="primary" fullWidth type="submit">
               Create
             </Button>
           </form>
