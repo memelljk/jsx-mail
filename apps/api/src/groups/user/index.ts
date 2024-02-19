@@ -8,7 +8,11 @@ const userGroup = new Hono<{ Bindings: Env }>()
 
 userGroup.post('/', validator('json', createUserSchema), async (c) => {
 	const body = c.req.valid('json')
-	const result = await createUser(body, c.env)
+	const result = await createUser({
+		body,
+		env: c.env,
+		executionCtx: c.executionCtx
+	})
 	return c.json(result)
 })
 
