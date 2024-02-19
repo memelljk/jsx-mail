@@ -36,7 +36,7 @@ export default function Page() {
 
       setIsLoading(true);
       try {
-        const response = await axios.post('/user/security-code/use', {
+        const response = await axios.post('/users/security-code/use', {
           securityCode: code,
           permission,
         });
@@ -75,7 +75,7 @@ export default function Page() {
 
     setIsLoading(true);
     try {
-      await axios.post('/user/security-code', {
+      await axios.post('/users/security-code', {
         email,
       });
     } catch (error: any) {
@@ -121,8 +121,6 @@ export default function Page() {
       return;
     }
 
-    console.log('passou!');
-
     handleSendCode();
 
     setIsSubmitted('true');
@@ -152,7 +150,7 @@ export default function Page() {
               className="w-full text-center"
             />
             <Button
-              isLoading={isLoading}
+              disabled={isLoading}
               color="primary"
               fullWidth
               type="submit"
@@ -160,7 +158,10 @@ export default function Page() {
               Verify
             </Button>
             <Link
-              onClick={handleSendCode}
+              onClick={async () => {
+                await handleSendCode();
+                toast.success('Code sent');
+              }}
               href="#"
               className="text-sm text-center"
             >

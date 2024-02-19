@@ -33,6 +33,9 @@ importers:
       '@prisma/extension-accelerate':
         specifier: ^0.6.3
         version: 0.6.3(@prisma/client@5.9.1)
+      aws4fetch:
+        specifier: ^1.0.17
+        version: 1.0.17
       bcryptjs:
         specifier: ^2.4.3
         version: 2.4.3
@@ -6615,6 +6618,10 @@ packages:
   /available-typed-arrays@1.0.6:
     resolution: {integrity: sha512-j1QzY8iPNPG4o4xmO3ptzpRxTciqD3MgEHtifP/YnJpIo58Xu+ne4BejlbkuaLfXn/nz6HFiw29bLpj2PNMdGg==}
     engines: {node: '>= 0.4'}
+
+  /aws4fetch@1.0.17:
+    resolution: {integrity: sha512-4IbOvsxqxeOSxI4oA+8xEO8SzBMVlzbSTgGy/EF83rHnQ/aKtP6Sc6YV/k0oiW0mqrcxuThlbDosnvetGOuO+g==}
+    dev: false
 
   /axe-core@4.7.0:
     resolution: {integrity: sha512-M0JtH+hlOL5pLQwHOLNYZaXuhqmvS8oExsqB1SBYgA4Dk7u/xx+YdGHXaK5pyUfed5mYXdlYiphWq3G8cRi5JQ==}

@@ -8,6 +8,7 @@
   "dependencies": {
     "@prisma/client": "^5.9.1",
     "@prisma/extension-accelerate": "^0.6.3",
+    "aws4fetch": "^1.0.17",
     "bcryptjs": "^2.4.3",
     "hono": "^4.0.4",
     "zod": "^3.22.4"

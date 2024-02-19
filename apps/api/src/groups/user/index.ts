@@ -18,7 +18,11 @@ userGroup.post('/', validator('json', createUserSchema), async (c) => {
 
 userGroup.post('/security-code', validator('json', createSecurityCodeSchema), async (c) => {
 	const body = c.req.valid('json')
-	const result = await createSecurityCode(body, c.env)
+	const result = await createSecurityCode({
+		body,
+		env: c.env,
+		executionCtx: c.executionCtx
+	})
 	return c.json(result)
 })
 
