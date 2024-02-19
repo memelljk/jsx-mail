@@ -31,6 +31,18 @@ export default async function createUser({ body: { email, name, password }, env,
 }
 
 async function dbCreate({ email, password, name }: CreateUserSchema, prisma: any) {
+	const noCacheUserAlreadyExists = await prisma.user.findFirst({
+		where: {
+			email,
+			deletedAt: null,
+		},
+	})
+
+	if (noCacheUserAlreadyExists) {
+		console.log(`Checked in no cache and user already exists: ${email}`);
+		return;
+	}
+
 	const salt = await bcrypt.genSalt(10);
 	const hashPassword = await bcrypt.hash(password, salt);
 
