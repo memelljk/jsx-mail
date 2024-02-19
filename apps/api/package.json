@@ -1,26 +1,25 @@
 {
   "name": "api",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "prepare:db": "prisma migrate deploy && prisma generate --accelerate && prisma db seed",
-    "dev": "pnpm run prepare:db && wrangler dev src/index.ts",
-    "deploy": "pnpm run prepare:db && wrangler deploy --minify src/index.ts"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.9.1",
-    "@prisma/extension-accelerate": "^0.6.3",
-    "aws4fetch": "^1.0.17",
-    "bcryptjs": "^2.4.3",
-    "hono": "^4.0.4",
-    "zod": "^3.22.4"
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:migrate": "tsx migrate.ts"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240208.0",
-    "@types/bcryptjs": "^2.4.6",
-    "prisma": "^5.9.1",
-    "ts-node": "^10.9.2",
-    "wrangler": "^3.25.0"
+    "dotenv": "^16.4.4",
+    "drizzle-kit": "^0.20.14",
+    "postgres": "^3.4.3",
+    "tsx": "^4.7.1",
+    "typescript": "^5.0.4",
+    "wrangler": "^3.0.0"
   },
-  "prisma": {
-    "seed": "ts-node -P tsconfig.seed.json ./prisma/seed/index.ts"
+  "dependencies": {
+    "@neondatabase/serverless": "^0.8.1",
+    "drizzle-orm": "^0.29.3",
+    "hono": "^4.0.4"
   }
 }

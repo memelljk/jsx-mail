@@ -4,6 +4,11 @@
       "mode": "auto"
     }
   ],
-  "cSpell.words": ["BACKBLAZE", "jsxmail", "MIMETYPES"],
+  "cSpell.words": [
+    "BACKBLAZE",
+    "Hono",
+    "jsxmail",
+    "MIMETYPES"
+  ],
   "editor.tabSize": 2
 }

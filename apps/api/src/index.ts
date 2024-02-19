@@ -1,47 +1,23 @@
-import { Hono } from 'hono'
-import { cors } from 'hono/cors'
-import HttpException from './utils/error'
-import HttpStatus from './utils/status'
-import userGroup from './groups/user'
+import { Hono } from 'hono';
+import getDb from './utils/get-db';
+import { users } from './db/schema';
 
-const app = new Hono<{ Bindings: Env }>()
+const app = new Hono<{ Bindings: Env }>();
 
-app.use(cors())
+app.get('/', async (c) => {
+  const db = getDb(c.env.DATABASE_URL);
 
-app.route('/users', userGroup)
+  const allUsers = await db
+    .select({
+      id: users.id,
+    })
+    .from(users);
 
-app.get('/', (c) => {
-  return c.json({
-    message: 'Welcome to JSX Mail API!',
-    timestamp: new Date(),
-    path: c.req.path
-  })
-})
-
-app.notFound(() => {
-  throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
-})
-
-app.onError((err, c) => {
-  let status = HttpStatus.INTERNAL_SERVER_ERROR
-  let message = 'Internal Server Error'
-
-  if (err instanceof HttpException) {
-    status = err.status
-    message = err.message
-  } else {
-    console.log(`Unknown error: ${err}`)
-  }
+  console.log(`All users: ${JSON.stringify(allUsers)}`);
 
   return c.json({
-    message,
-    timestamp: new Date(),
-    path: c.req.path
-  },
-    {
-      status: status,
-    }
-  )
-})
+    message: 'Hello World!',
+  });
+});
 
-export default app
+export default app;
