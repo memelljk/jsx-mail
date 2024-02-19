@@ -150,7 +150,7 @@ export default function Page() {
               className="w-full text-center"
             />
             <Button
-              disabled={isLoading}
+              isDisabled={isLoading}
               color="primary"
               fullWidth
               type="submit"

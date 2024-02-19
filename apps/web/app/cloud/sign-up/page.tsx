@@ -50,7 +50,6 @@ export default function Page() {
           email,
           password,
         });
-
         toast.success('Account created successfully');
         router.push(
           `/cloud/security-code?permission=self:email-validate&email=${email}&redirect=${encodeURIComponent(`/cloud/verify-email?redirect=${redirect}`)}`,
@@ -124,7 +123,7 @@ export default function Page() {
               name="password2"
             />
             <Button
-              disabled={isLoading}
+              isDisabled={isLoading}
               color="primary"
               fullWidth
               type="submit"
