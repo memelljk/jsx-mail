@@ -16,7 +16,7 @@ export default async function createUser({ body: { email, name, password }, env,
 			email,
 			deletedAt: null,
 		},
-		cacheStrategy: { swr: CacheTime.ONE_DAY }
+		cacheStrategy: { swr: CacheTime.FOREVER }
 	})
 
 	if (userAlreadyExists) {
